@@ -16,7 +16,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @ComponentScan(basePackages = "ru.ivmiit.service")
 @EnableJpaRepositories(basePackages = "ru.ivmiit.service.repositories")
 @EntityScan(basePackages = "ru.ivmiit.service.models")
-
 public class Application extends WebMvcConfigurerAdapter {
 
     @Override

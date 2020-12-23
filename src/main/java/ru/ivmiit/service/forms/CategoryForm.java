@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-
 public class CategoryForm {
     private String name;
 }

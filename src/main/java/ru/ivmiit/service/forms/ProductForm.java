@@ -8,4 +8,6 @@ public class ProductForm {
     private String name;
     private Integer price;
     private long category_id;
+    private String description;
+
 }

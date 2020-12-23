@@ -8,4 +8,5 @@ public class UserForm {
     private String lastName;
     private String login;
     private String password;
+
 }

@@ -7,6 +7,7 @@ import ru.ivmiit.service.models.Category;
 import ru.ivmiit.service.models.Product;
 import ru.ivmiit.service.repositories.CategoryRepository;
 import ru.ivmiit.service.repositories.ProductsRepository;
+import ru.ivmiit.service.transfer.ProductDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,7 @@ public class ProductsServiceImpl implements ProductsService {
     private CategoryRepository categoryRepository;
 
     @Override
-    public void addProducts(ProductForm productForm) {
+    public Product addProducts(ProductForm productForm) {
         Optional<Category> category = categoryRepository.findById(productForm.getCategory_id());
         Category category1 = category.get();
         Product product = Product.builder()
@@ -28,7 +29,8 @@ public class ProductsServiceImpl implements ProductsService {
                 .price(productForm.getPrice())
                 .category(category1)
                 .build();
-        productsRepository.save(product);
+        Product result=productsRepository.save(product);
+        return result;
     }
 
     @Override
@@ -39,7 +41,17 @@ public class ProductsServiceImpl implements ProductsService {
     @Override
     public void deleteProducts(Long id) {
         productsRepository.delete(id);
+    }
 
+    @Override
+    public List<Product> findProductsByName(String name) {
+        return productsRepository.getProductByName(name);
+    }
+
+    @Override
+    public Product updateDescriptionProduct(ProductDto product) {
+        productsRepository.updateDescriptionProductById(Optional.of(product.getDescription()),product.getId());
+       return productsRepository.findById(product.getId());
     }
 
 }
